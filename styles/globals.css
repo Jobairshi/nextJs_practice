@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,4 +23,20 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+.bolds{
+  color: red;
+}
+
+.nav_button{
+  text-align: center;
+  padding: 10px;
+  align-items: center;
+  height: 40px;
+  width: 100px;
+  background-color: rgba(255, 255, 255, 0.459);
+  border-radius: 10px;
+}
+.nav_button:hover{
+  box-shadow: 2px 2px 2px rgb(104, 104, 104);
 }
