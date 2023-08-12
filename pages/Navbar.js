@@ -16,7 +16,7 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Link className='nav_button' href="/">Blog</Link>
+            <Link className='nav_button' href="/Blog">Blog</Link>
           </li>
 
           <li>
