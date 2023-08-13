@@ -1,21 +1,24 @@
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 
-const sub_page = () => {
-    const router = useRouter()
-    const {Blog_no} = router.query 
+const sub_page = (props) => {
+   
+  const [blogData, setBlogData] = useState(props.myblog);
+
   return (
     <main>
         <div className="container flex flex-col gap-5">
             <h1 className='font-semibold text-5xl'>
-                {Blog_no}
+                {
+                  blogData.title
+                }
                 <hr />
             </h1>
            
 
             <div>
                <p className='text-1xl'>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum nobis voluptatibus accusamus, reiciendis aliquid corporis a aspernatur vel cupiditate sed molestias animi velit.
+                {blogData.content}
                </p>
             </div>
 
@@ -28,5 +31,16 @@ const sub_page = () => {
     </main>
   )
 }
+export async function getServerSideProps(context)
+{
+  const {Blog_no} = context.query 
+
+    let data = await fetch(`http://localhost:3000/api/getBlog?Blog_no=${Blog_no}`)
+    let myblog = await data.json();
+  return {
+      props : {myblog},
+    }
+}
+
 
 export default sub_page

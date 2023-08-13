@@ -2,17 +2,10 @@ import React ,{ useState, useEffect }  from 'react'
 
 import Link from 'next/link';
 import {Card, CardHeader, CardBody, Image} from "@nextui-org/react";
-const Blog = () => {
+const Blog = (props) => {
+ console.log(props)
 
-
-  const [blogData, setBlogData] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/Blogs_data')
-      .then((response) => response.json())
-      .then((data) => setBlogData(data))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  const [blogData, setBlogData] = useState(props.allblogs);
   
 
   return (
@@ -50,6 +43,14 @@ const Blog = () => {
         </div>
     </main>
   )
+}
+export async function getServerSideProps(context)
+{
+    let data = await fetch('http://localhost:3000/api/Blogs_data')
+    let allblogs = await data.json();
+  return {
+      props : {allblogs},
+    }
 }
 
 export default Blog
